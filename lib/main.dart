@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/network/api/pokemon_api.dart';
+
+import 'network/dio/http_dio_manager.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,9 +33,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
+  PokemonApi api = PokemonApi(HttpDioManager().dio);
+
   void _incrementCounter() {
     setState(() {
       _counter++;
+      api.getPokemons().listen((event) {});
     });
   }
 
